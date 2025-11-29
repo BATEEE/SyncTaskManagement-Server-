@@ -1,35 +1,59 @@
-HELP.md
+# Thư mục và File Build/Output
+# -----------------------------
 target/
-.mvn/wrapper/maven-wrapper.jar
+build/
+# Loại trừ thư mục target/ hoặc build/ bên trong các module nếu có
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-### STS ###
-.apt_generated
+# Spring Boot & Maven Wrapper
+# ---------------------------
+HELP.md
+.mvn/wrapper/maven-wrapper.jar
+/log
+/logs
+*.log
+*.zip
+*.tar.gz
+*.war
+*.jar
+
+# Thông tin Cấu hình Nhạy cảm và Môi trường
+# ----------------------------------------
+# Loại trừ file biến môi trường (RẤT QUAN TRỌNG)
+.env
+.env.local
+*.properties
+*.yml
+*.yaml
+
+# ### STS/Eclipse ###
+# -------------------
+.apt_generated/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
-### IntelliJ IDEA ###
-.idea
+# ### IntelliJ IDEA ###
+# ---------------------
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# ### NetBeans ###
+# ----------------
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# ### VS Code ###
+# ---------------
 .vscode/
-
-.env
