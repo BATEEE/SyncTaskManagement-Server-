@@ -1,4 +1,4 @@
-package com.ttt.synctaskmanagement.dto.requests;
+package com.ttt.synctaskmanagement.dtos.requests;
 
 import lombok.Getter;
 import lombok.Setter;

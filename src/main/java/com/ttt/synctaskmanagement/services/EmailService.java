@@ -1,4 +1,4 @@
-package com.ttt.synctaskmanagement.service;
+package com.ttt.synctaskmanagement.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

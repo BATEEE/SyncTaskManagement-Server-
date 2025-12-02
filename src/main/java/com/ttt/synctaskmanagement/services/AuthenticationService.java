@@ -1,10 +1,13 @@
-package com.ttt.synctaskmanagement.service;
+package com.ttt.synctaskmanagement.services;
 
-import com.ttt.synctaskmanagement.dto.requests.LoginUserDTO;
-import com.ttt.synctaskmanagement.dto.requests.RegisterUserDTO;
-import com.ttt.synctaskmanagement.dto.requests.VerifyUserDTO;
-import com.ttt.synctaskmanagement.model.User;
-import com.ttt.synctaskmanagement.repository.UserRepository;
+import com.ttt.synctaskmanagement.dtos.requests.LoginUserDTO;
+import com.ttt.synctaskmanagement.dtos.requests.RegisterUserDTO;
+import com.ttt.synctaskmanagement.dtos.requests.VerifyUserDTO;
+import com.ttt.synctaskmanagement.exceptions.EmailAlreadyExistsException;
+import com.ttt.synctaskmanagement.exceptions.ResourceNotFoundException;
+import com.ttt.synctaskmanagement.models.User;
+import com.ttt.synctaskmanagement.models.enums.Role;
+import com.ttt.synctaskmanagement.repositories.UserRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,10 +38,15 @@ public class AuthenticationService {
     }
 
     public User signup(RegisterUserDTO input) {
+        if(userRepository.existsByEmail(input.getEmail())) {
+            throw new EmailAlreadyExistsException("Email đã tồn tại: " + input.getEmail());
+        }
+
         User user = new User(input.getUsername(), input.getEmail(), passwordEncoder.encode(input.getPassword()));
         user.setVerificationCode(generateVerificationCode());
-        user.setVericationExpiration(LocalDateTime.now().plusMinutes(15));
+        user.setVerificationExpiration(LocalDateTime.now().plusMinutes(15));
         user.setEnabled(false);
+        user.setRole(Role.USER);
         sendVerificationEmail(user);
         return userRepository.save(user);
     }
@@ -64,13 +72,13 @@ public class AuthenticationService {
         Optional<User> optionalUser = userRepository.findByEmail(input.getEmail());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getVericationExpiration().isBefore(LocalDateTime.now())) {
+            if (user.getVerificationExpiration().isBefore(LocalDateTime.now())) {
                 throw new RuntimeException("Verification code has expired");
             }
             if (user.getVerificationCode().equals(input.getVerificationCode())) {
                 user.setEnabled(true);
                 user.setVerificationCode(null);
-                user.setVericationExpiration(null);
+                user.setVerificationExpiration(null);
                 userRepository.save(user);
             } else {
                 throw new RuntimeException("Invalid verification code");
@@ -88,7 +96,7 @@ public class AuthenticationService {
                 throw new RuntimeException("Account is already verified");
             }
             user.setVerificationCode(generateVerificationCode());
-            user.setVericationExpiration(LocalDateTime.now().plusHours(1));
+            user.setVerificationExpiration(LocalDateTime.now().plusHours(1));
             sendVerificationEmail(user);
             userRepository.save(user);
         } else {

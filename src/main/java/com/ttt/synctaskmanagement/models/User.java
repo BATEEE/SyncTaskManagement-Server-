@@ -1,8 +1,12 @@
-package com.ttt.synctaskmanagement.model;
+package com.ttt.synctaskmanagement.models;
 
+import com.ttt.synctaskmanagement.models.enums.Role;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,13 +18,14 @@ import java.util.List;
 @Table(name="users")
 @Setter
 @Getter
+@Builder
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String username;
-    @Column(unique = true, nullable = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = true)
     private String password;
@@ -28,7 +33,18 @@ public class User implements UserDetails {
     @Column(name="verification_code")
     private String verificationCode;
     @Column(name="verication_expiration")
-    private LocalDateTime vericationExpiration;
+    private LocalDateTime verificationExpiration;
+    @Column(name="avatar_url")
+    private String avatarUrl;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 
     public User(String username, String email, String password) {
         this.username = username;

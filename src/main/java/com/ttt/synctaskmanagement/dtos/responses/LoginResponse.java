@@ -1,4 +1,4 @@
-package com.ttt.synctaskmanagement.dto.responses;
+package com.ttt.synctaskmanagement.dtos.responses;
 
 import lombok.Getter;
 import lombok.Setter;

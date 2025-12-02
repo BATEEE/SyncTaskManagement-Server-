@@ -1,7 +1,7 @@
-package com.ttt.synctaskmanagement.controller;
+package com.ttt.synctaskmanagement.controllers;
 
-import com.ttt.synctaskmanagement.model.User;
-import com.ttt.synctaskmanagement.service.UserService;
+import com.ttt.synctaskmanagement.models.User;
+import com.ttt.synctaskmanagement.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

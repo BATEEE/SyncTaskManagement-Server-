@@ -1,6 +1,6 @@
-package com.ttt.synctaskmanagement.config;
+package com.ttt.synctaskmanagement.configs;
 
-import com.ttt.synctaskmanagement.service.JwtService;
+import com.ttt.synctaskmanagement.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

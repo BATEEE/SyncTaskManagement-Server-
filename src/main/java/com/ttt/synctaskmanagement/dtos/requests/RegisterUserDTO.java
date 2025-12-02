@@ -1,11 +1,12 @@
-package com.ttt.synctaskmanagement.dto.requests;
+package com.ttt.synctaskmanagement.dtos.requests;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LoginUserDTO {
+public class RegisterUserDTO {
     private String email;
     private String password;
+    private String username;
 }

@@ -1,7 +1,7 @@
-package com.ttt.synctaskmanagement.service;
+package com.ttt.synctaskmanagement.services;
 
-import com.ttt.synctaskmanagement.model.User;
-import com.ttt.synctaskmanagement.repository.UserRepository;
+import com.ttt.synctaskmanagement.models.User;
+import com.ttt.synctaskmanagement.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

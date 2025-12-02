@@ -1,4 +1,4 @@
-package com.ttt.synctaskmanagement.service;
+package com.ttt.synctaskmanagement.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

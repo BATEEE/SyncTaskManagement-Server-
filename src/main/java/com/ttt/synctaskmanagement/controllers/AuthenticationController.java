@@ -1,12 +1,12 @@
-package com.ttt.synctaskmanagement.controller;
+package com.ttt.synctaskmanagement.controllers;
 
-import com.ttt.synctaskmanagement.dto.requests.LoginUserDTO;
-import com.ttt.synctaskmanagement.dto.requests.RegisterUserDTO;
-import com.ttt.synctaskmanagement.dto.requests.VerifyUserDTO;
-import com.ttt.synctaskmanagement.dto.responses.LoginResponse;
-import com.ttt.synctaskmanagement.model.User;
-import com.ttt.synctaskmanagement.service.AuthenticationService;
-import com.ttt.synctaskmanagement.service.JwtService;
+import com.ttt.synctaskmanagement.dtos.requests.LoginUserDTO;
+import com.ttt.synctaskmanagement.dtos.requests.RegisterUserDTO;
+import com.ttt.synctaskmanagement.dtos.requests.VerifyUserDTO;
+import com.ttt.synctaskmanagement.dtos.responses.LoginResponse;
+import com.ttt.synctaskmanagement.models.User;
+import com.ttt.synctaskmanagement.services.AuthenticationService;
+import com.ttt.synctaskmanagement.services.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

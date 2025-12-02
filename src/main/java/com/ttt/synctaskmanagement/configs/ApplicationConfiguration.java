@@ -1,6 +1,6 @@
-package com.ttt.synctaskmanagement.config;
+package com.ttt.synctaskmanagement.configs;
 
-import com.ttt.synctaskmanagement.repository.UserRepository;
+import com.ttt.synctaskmanagement.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
